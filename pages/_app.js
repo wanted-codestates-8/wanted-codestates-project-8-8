@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import FeedbackModal from './components/FeedbackModal'
 
 const GlobalStyle = createGlobalStyle`
     * {
@@ -79,6 +80,7 @@ export default function App({ Component, pageProps }) {
       <GlobalStyle />
       <ThemeProvider theme={theme}>
         <Component {...pageProps} />
+        <FeedbackModal />
       </ThemeProvider>
     </>
   )
