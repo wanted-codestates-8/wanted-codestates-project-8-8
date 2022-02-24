@@ -125,11 +125,11 @@ function Index() {
       return
     }
 
-    const searchResult = data?.data?.map((e) => ({
+    const searchResult = data?.map((e) => ({
       id: e.id,
-      name: e.fcNm,
-      addr: e.fcAddr,
-      tel: e.ref1,
+      name: e.name,
+      addr: e.addr,
+      tel: e.tel,
       memo: '',
     }))
     setPubMapList(searchResult)
