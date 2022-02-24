@@ -3,6 +3,7 @@ import SearchBar from '../components/SearchBar'
 import Item from '../components/Item'
 import Image from 'next/image'
 import { useState } from 'react'
+import LocalStorageComponent from '../components/LocalStorageComponent'
 
 const Wrapper = styled.div`
   margin: auto;
@@ -62,8 +63,8 @@ export default function Home() {
 
   return (
     <>
-      <SearchBar></SearchBar>
       <Wrapper>
+        <SearchBar></SearchBar>
         <ItemWrapper>
           {tempList.map((data, index) => (
             <Item key={index} data={data} onClick={onClick} />
@@ -73,6 +74,7 @@ export default function Home() {
           <Image src="/add.png" width={'30'} height={'30'} />
         </ImageWrapper>
       </Wrapper>
+      <LocalStorageComponent />
     </>
   )
 }
