@@ -28,7 +28,9 @@ export default function Home() {
   const handleSearchResult = (e) => {
     const tagState = TAG_DATA[currentTag]
     const value = e.target.value
-    const lists = data.filter((list) => list[tagState].includes(value))
+    const lists = JSON.parse(localStorage.getItem('dataList')).filter((list) =>
+      list[tagState].includes(value)
+    )
 
     setSearchResult(value)
     setData(lists)
