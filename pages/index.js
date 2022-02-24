@@ -1,5 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components'
+import SearchBar from '../components/SearchBar'
 
 export default function Home() {
-  return <></>;
+  return (
+    <>
+      <SearchBar></SearchBar>
+    </>
+  )
 }
