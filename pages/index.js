@@ -1,5 +1,7 @@
-import styled from "styled-components";
+import React from 'react'
 
-export default function Home() {
-  return <></>;
+function Index() {
+  return <div>Index</div>
 }
+
+export default Index
