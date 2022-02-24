@@ -20,6 +20,7 @@ const GlobalStyle = createGlobalStyle`
       min-height:100vh;
       font-family: 'Noto Sans KR', 'sans-serif';
       user-select: none;
+      background-color: lightgray;
       -webkit-user-select: none; 
       -moz-user-select: none;   
       -ms-user-select: none;     
@@ -67,6 +68,14 @@ const theme = {
   colors: {
     primary: '#6d7b58',
     secondary: '#b35256',
+    background: '#E5E5E5',
+
+    white: '#fff',
+    gray: '#F5F5F5',
+    gray2: '#e6e8e3',
+    darkgray: '#e0e0e0',
+    black: '#3b3a30',
+    warning: '#dc2f2f',
   },
 }
 
