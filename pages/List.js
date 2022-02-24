@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Modal from '../components/modal/Modal'
 import FeedbackModal from '../components/modal/FeebackModal'
+import Item from '../components/item/Item'
 
 const Main = styled.main`
   width: 100%;
@@ -14,7 +15,6 @@ const Main = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${({ theme }) => theme.colors.primary};
   background-color: ${({ theme }) => theme.colors.background};
 `
 
@@ -130,7 +130,7 @@ const PubModalContent = styled.div`
 
     &.disabled {
       background-color: ${({ theme }) => theme.colors.gray};
-      color: ${({ theme }) => theme.colors.black};
+      color: lightgray;
       border: 1px solid ${({ theme }) => theme.colors.black};
     }
   }
@@ -210,14 +210,11 @@ function Index() {
         <PubMapList>
           {pubMapList?.map((pub) => (
             <>
-              <PubMapItem
+              <Item
                 key={pub.id}
+                data={pub}
                 onClick={() => onHandleModalOpen(pub.id)}
-              >
-                <h2 className="pubname">{pub.name}</h2>
-                <div className="address">{pub.addr}</div>
-                <div className="tel">{pub.tel}</div>
-              </PubMapItem>
+              ></Item>
 
               {modalIdx === pub.id && (
                 <Modal onClose={onHandleModalClose}>
