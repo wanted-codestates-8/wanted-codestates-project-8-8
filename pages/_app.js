@@ -68,6 +68,13 @@ const theme = {
   colors: {
     primary: '#6d7b58',
     secondary: '#b35256',
+    background: '#E5E5E5',
+
+    white: '#fff',
+    gray: '#F5F5F5',
+    gray2: '#e6e8e3',
+    black: '#3b3a30',
+    warning: '#dc2f2f',
   },
 }
 
