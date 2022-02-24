@@ -8,13 +8,13 @@ const LocalStorageComponent = () => {
     const [listItems, setListItems] = useState([]);
 
     useEffect(() => {
-        const items = JSON.parse(localStorage.getItem("data")) || [];
+        const items = JSON.parse(localStorage.getItem("dataList")) || [];
         setListItems(items)
     }, [])
 
+    const obj = { id: 3, name: `아무산`, addr: `충북`, memo: memo }
 
     const saveData = () => {
-        const obj = { id: 5, name: `아무산`, addr: `충북`, memo: memo }
         const container = JSON.parse(localStorage.getItem("dataList")) || [];
         container.push(obj)
         localStorage.setItem("dataList", JSON.stringify(container));
@@ -25,10 +25,15 @@ const LocalStorageComponent = () => {
         setData(true)
     }
 
+    const willUpdateId = 2;
+
     const updateData = () => {
+        const willUpdateData = listItems.filter((item) => item.id === willUpdateId);
+        willUpdateData[0].memo = "update2";
+        localStorage.setItem("dataList", JSON.stringify(listItems))
     }
     
-    const willDeleteId = 2;
+    const willDeleteId = 3;
 
     const deleteData = () => {
         const leftData = listItems.filter((item) => item.id !== willDeleteId);
