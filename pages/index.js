@@ -60,20 +60,19 @@ export default function Home() {
     setModal(true)
   }
 
-  return (<>
+  return (
+    <>
       <SearchBar></SearchBar>
-           <Wrapper>
-      <ItemWrapper>
-        {tempList.map((data, index) => (
-          <Item key={index} data={data} onClick={onClick} />
-        ))}
-      </ItemWrapper>
-      <ImageWrapper>
-        <Image src="/add.png" width={'30'} height={'30'} />
-      </ImageWrapper>
-    </Wrapper>
+      <Wrapper>
+        <ItemWrapper>
+          {tempList.map((data, index) => (
+            <Item key={index} data={data} onClick={onClick} />
+          ))}
+        </ItemWrapper>
+        <ImageWrapper>
+          <Image src="/add.png" width={'30'} height={'30'} />
+        </ImageWrapper>
+      </Wrapper>
     </>
-   
-
   )
 }
