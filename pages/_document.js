@@ -20,6 +20,8 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <div id="modal" />
+          <div id="back-drop" />
         </body>
       </Html>
     )
