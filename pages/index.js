@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import SearchBar from '../components/SearchBar'
 import Item from '../components/Item'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -59,8 +60,9 @@ export default function Home() {
     setModal(true)
   }
 
-  return (
-    <Wrapper>
+  return (<>
+      <SearchBar></SearchBar>
+           <Wrapper>
       <ItemWrapper>
         {tempList.map((data, index) => (
           <Item key={index} data={data} onClick={onClick} />
@@ -70,5 +72,8 @@ export default function Home() {
         <Image src="/add.png" width={'30'} height={'30'} />
       </ImageWrapper>
     </Wrapper>
+    </>
+   
+
   )
 }
