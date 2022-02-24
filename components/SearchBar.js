@@ -39,12 +39,14 @@ const Section = styled.section`
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
+  margin-left: 20px;
 `
 
 const Form = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
 `
 
 const Input = styled.input`
