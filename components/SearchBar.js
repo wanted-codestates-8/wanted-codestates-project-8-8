@@ -4,10 +4,6 @@ import styled from 'styled-components'
 const SearchBar = ({ value, onChange, tag, onTagChange }) => {
   const searchMethods = ['이름', '주소', '메모']
 
-  const handleTag = (index) => {
-    setCurrentTag(index)
-  }
-
   return (
     <Section>
       <Form>

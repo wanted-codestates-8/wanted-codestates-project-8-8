@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Modal from '../modal/Modal'
 import styled from 'styled-components'
 import Item from './Item'
+import Link from 'next/link'
 
 const ItemWrapper = styled.div`
   display: flex;
@@ -13,6 +14,7 @@ const ItemWrapper = styled.div`
   // max-height: 740px;
   overflow: auto;
 `
+
 
 const ImageWrapper = styled.div`
   position: absolute;
@@ -60,6 +62,7 @@ export default function ItemList({ itemList }) {
         )}
       </ItemWrapper>
       {activedData && <Modal>{activedData.name}</Modal>}
+
       <ImageWrapper>
         +{/* <Image src="/add.png" width={'40'} height={'40'} /> */}
       </ImageWrapper>
