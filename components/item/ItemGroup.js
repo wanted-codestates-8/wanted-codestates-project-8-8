@@ -9,6 +9,8 @@ const ItemWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px 0;
+  max-height: 740px;
+  overflow: auto;
 `
 
 const ImageWrapper = styled.div`

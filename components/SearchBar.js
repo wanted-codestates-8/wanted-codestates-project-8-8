@@ -1,71 +1,30 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 
-const data = [
-  {
-    name: '충주 휴양림',
-    addr: '가나다',
-    memo: '추운날',
-    tel: '000',
-  },
-  {
-    name: '아주 휴양림',
-    addr: '라마다',
-    memo: '더운날',
-    tel: '000',
-  },
-  {
-    name: '가주 휴양림',
-    addr: '우우우',
-    memo: '아이가 좋아해요',
-    tel: '000',
-  },
-  {
-    name: '나주 휴양림',
-    addr: '오오오',
-    memo: '친구가 좋아해요',
-    tel: '000',
-  },
-]
-
-const SearchBar = () => {
+const SearchBar = ({ value, onChange, tag, onTagChange }) => {
   const searchMethods = ['이름', '주소', '메모']
-  const [currentTag, setCurrentTag] = useState(0)
-  const [searchResult, setSearchResult] = useState('')
 
   const handleTag = (index) => {
     setCurrentTag(index)
   }
-
-  const handleSearchResult = (e) => {
-    const length = e.target.value.length
-    const tagData = ['name', 'addr', 'memo']
-    const tagState = tagData[currentTag]
-    const lists = data.filter(
-      (list) =>
-        list[tagState].toString().substring(0, length) ===
-        e.target.value.toString()
-    )
-    setSearchResult(lists)
-  }
-  console.log(searchResult)
 
   return (
     <Section>
       <Form>
         <Input
           placeholder="저장 목록 검색하기"
-          onChange={handleSearchResult}
+          onChange={onChange}
+          value={value}
         ></Input>
       </Form>
       <TagLists>
         {searchMethods.map((list, index) => (
           <Tag
             key={index}
-            onClick={() => handleTag(index)}
+            onClick={() => onTagChange(index)}
             style={{
-              backgroundColor: currentTag === index ? '#6B7B56' : 'whitesmoke',
-              color: currentTag === index ? 'whitesmoke' : 'black',
+              backgroundColor: tag === index ? '#6B7B56' : 'whitesmoke',
+              color: tag === index ? 'whitesmoke' : 'black',
             }}
           >
             {list}
