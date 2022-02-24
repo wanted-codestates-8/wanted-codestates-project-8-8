@@ -20,6 +20,7 @@ const GlobalStyle = createGlobalStyle`
       min-height:100vh;
       font-family: 'Noto Sans KR', 'sans-serif';
       user-select: none;
+      background-color: lightgray;
       -webkit-user-select: none; 
       -moz-user-select: none;   
       -ms-user-select: none;     
