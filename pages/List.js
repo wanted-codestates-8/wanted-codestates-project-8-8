@@ -59,35 +59,6 @@ const PubMapList = styled.ul`
   margin-top: 1rem;
 `
 
-const PubMapItem = styled.li`
-  width: 100%;
-  height: 100px;
-  border-radius: 10px;
-  background-color: ${({ theme }) => theme.colors.gray};
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  transition: background-color 0.3s ease-in-out;
-  cursor: pointer;
-
-  & h2 {
-    font-size: 1.5rem;
-  }
-
-  & .address {
-    font-size: 1.3rem;
-  }
-
-  & .tel {
-    font-size: 1.3rem;
-  }
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.gray2};
-  }
-`
-
 const PubModalContent = styled.div`
   width: 100%;
   height: 100%;

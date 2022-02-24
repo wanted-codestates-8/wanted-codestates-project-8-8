@@ -6,8 +6,7 @@ import { useState } from 'react/cjs/react.development'
 import Image from 'next/image'
 
 import { useEffect } from 'react'
-import AddButton from '../components/AddButton'
-
+import PlusButton from '../components/PlusButton'
 
 const Wrapper = styled.div`
   margin: auto;
@@ -52,7 +51,7 @@ export default function Home() {
         onTagChange={(idx) => setCurrentTag(idx)}
       />
       <ItemGroup itemList={data} />
-      <AddButton href={'/list'} src="/add.png" width={30} height={30} />
+      <PlusButton href={'/list'} />
     </Wrapper>
   )
 }

@@ -15,30 +15,6 @@ const ItemWrapper = styled.div`
   overflow: auto;
 `
 
-
-const ImageWrapper = styled.div`
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 10px;
-  margin: 20px auto;
-  width: fit-content;
-  &:hover {
-    cursor: pointer;
-    opacity: 100%;
-  }
-  background-color: #6b7b56;
-  opacity: 50%;
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  text-align: center;
-  line-height: 80px;
-  font-size: 30px;
-  color: whitesmoke;
-  font-weight: 400;
-`
-
 const ItemContainer = styled.section`
   & + & {
     margin-top: 15px;
@@ -62,10 +38,6 @@ export default function ItemList({ itemList }) {
         )}
       </ItemWrapper>
       {activedData && <Modal>{activedData.name}</Modal>}
-
-      <ImageWrapper>
-        +{/* <Image src="/add.png" width={'40'} height={'40'} /> */}
-      </ImageWrapper>
     </>
   )
 }
