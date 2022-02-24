@@ -11,10 +11,6 @@ const Box = styled.section`
     cursor: pointer;
     background-color: #e0e0e0;
   }
-
-  & + & {
-    margin-top: 15px;
-  }
 `
 
 const Container = styled.div``
