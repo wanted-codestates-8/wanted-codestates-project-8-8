@@ -1,28 +1,34 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import Button from './button/Button'
-export default function Contents({ name, addr, tel, id, memo }) {
-  const [text, setText] = useState(memo)
+
+export default function Contents({ data, onDataChange }) {
+  const [text, setText] = useState(data.memo)
   const memoChange = (e) => {
     setText(e.target.value)
   }
+
   return (
     <Wrapper>
-      <h1>{name}</h1>
-      <p>{addr}</p>
-      <p>{tel}</p>
+      <h1>{data.name}</h1>
+      <p>{data.addr}</p>
+      <p>{data.tel}</p>
       <form>
         <span>메모</span>
         <textarea value={text} onChange={memoChange} />
 
         <BtnWrap>
-          <Button bgColor="#B85656" width="147" height="36">
+          <Button
+            bgColor="#B85656"
+            width="147"
+            height="36"
+            onClick={() => onDataChange(data.id, text)}
+          >
             수정
           </Button>
           <Button bgColor="#6B7B56" width="142" height="36">
             삭제
           </Button>
-          {/* <Button fullWidth>저장</Button> */}
         </BtnWrap>
       </form>
     </Wrapper>
