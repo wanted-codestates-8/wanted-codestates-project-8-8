@@ -12,7 +12,7 @@ PROJECT PERIOD: 2022.02.24 ~ 2022.02.25
 
 <br>
 
-[배포링크]()
+[배포링크](https://wanted-8-8-i7.netlify.app/)
 
 <br>
 
