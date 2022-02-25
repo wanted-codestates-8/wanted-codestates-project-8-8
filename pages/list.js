@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import useSWR from 'swr'
+import useSWRInfinite from 'swr/infinite'
 import axios from 'axios'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -107,25 +107,82 @@ const PubModalContent = styled.div`
   }
 `
 
+const SpinnerWrapper = styled.div`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const Spinner = styled.div`
+  width: 25px;
+  height: 25px;
+  background-color: ${({ theme }) => theme.colors.primary};
+
+  animation: 0.8s ease-in-out infinite spin;
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`
+
 function Index() {
   const [pubMapList, setPubMapList] = useState([])
   const [modalIdx, setModalIdx] = useState(null)
   const [memo, setMemo] = useState('')
   const [alarm, setAlarm] = useState(false)
+  const [isLoading, setLoading] = useState(true)
 
-  const { data, error } = useSWR(
-    '/api/pubMapForest',
-    async (url) => await axios.get(url).then((res) => res.data)
-  )
-  console.log(pubMapList, modalIdx)
+  // fetch data through proxy
+  const getKey = (i, d) => (d && !d.length ? null : String(i + 1))
+  const fetcher = (n) =>
+    axios.get(`/api/pubMapForest?n=${n}`).then((res) => res.data)
+  const { data, error, size, setSize } = useSWRInfinite(getKey, fetcher, {
+    revalidateFirstPage: false,
+  })
+
+  // initialize observer
+  const observer = useRef()
+  const [target, setTarget] = useState('init')
+  const update = (entries) => {
+    if (entries[0].intersectionRatio === 0) return
+    observer.current.disconnect()
+    setTarget(entries[0].target.textContent)
+  }
+  useEffect(() => {
+    observer.current = new IntersectionObserver(update, {
+      root: document.getElementById('list-wrapper'),
+      threshold: 1.0,
+    })
+  }, [])
+
+  // fetch next page when observe target has changed
+  useEffect(() => {
+    if (target === 'init') return
+    setSize(size + 1)
+    setLoading(true)
+  }, [target])
+
+  // observe last list item when items updated
+  useEffect(() => {
+    if (isLoading) return
+    const wrapper = document.getElementById('pub-map-list')
+    observer.current.observe(wrapper.lastChild)
+  }, [isLoading])
 
   useEffect(async () => {
+    if (!data) return
     if (error) {
-      console.log(error)
+      console.error(error)
       return
     }
 
-    const searchResult = data?.map((e) => ({
+    const searchResult = [].concat(...data).map((e) => ({
       id: e.id,
       name: e.name,
       addr: e.addr,
@@ -133,6 +190,7 @@ function Index() {
       memo: '',
     }))
     setPubMapList(searchResult)
+    setLoading(false)
   }, [data, error])
 
   function onHandleModalOpen(i) {
@@ -178,7 +236,7 @@ function Index() {
           </Link>
         </PubMapHeader>
 
-        <PubMapList>
+        <PubMapList id="pub-map-list">
           {pubMapList?.map((pub) => (
             <>
               <Item
@@ -219,6 +277,13 @@ function Index() {
               )}
             </>
           ))}
+          {isLoading && (
+            <>
+              <SpinnerWrapper>
+                <Spinner />
+              </SpinnerWrapper>
+            </>
+          )}
         </PubMapList>
 
         {/* alram */}
