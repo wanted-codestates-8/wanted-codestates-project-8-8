@@ -107,7 +107,7 @@ const PubModalContent = styled.div`
   }
 `
 
-const SpinnerWrapper = styled.div`
+export const SpinnerWrapper = styled.div`
   width: 100%;
   height: 50px;
   display: flex;
@@ -115,7 +115,7 @@ const SpinnerWrapper = styled.div`
   justify-content: center;
 `
 
-const Spinner = styled.div`
+export const Spinner = styled.div`
   width: 25px;
   height: 25px;
   background-color: ${({ theme }) => theme.colors.primary};

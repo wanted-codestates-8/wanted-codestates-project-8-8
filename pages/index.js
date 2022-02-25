@@ -58,13 +58,9 @@ export default function Home() {
   const onDataChange = (id, text) => {
     if (!text) {
       setFeedbackState({
-        text: '메모를 입력해주세요.',
+        text: '메모를 입력해주세요',
         className: 'warning',
       })
-
-      setTimeout(() => {
-        setFeedbackState(null)
-      }, 2000)
       return
     }
 
@@ -75,12 +71,9 @@ export default function Home() {
     localStorage.setItem('dataList', JSON.stringify(data))
 
     setFeedbackState({
-      text: '수정이 완료되었습니다.',
+      text: '수정이 완료되었습니다',
       className: '',
     })
-    setTimeout(() => {
-      setFeedbackState(null)
-    }, 2000)
   }
 
   const onDataDelete = (id) => {
@@ -94,10 +87,6 @@ export default function Home() {
       text: '삭제가 완료되었습니다',
       className: '',
     })
-
-    setTimeout(() => {
-      setFeedbackState(null)
-    }, 2000)
   }
 
   useEffect(() => {
@@ -132,6 +121,7 @@ export default function Home() {
         <FeedbackModal
           text={feedbackState.text}
           className={feedbackState.className}
+          timeOutFunc={() => setFeedbackState(null)}
         />
       )}
     </Wrapper>
