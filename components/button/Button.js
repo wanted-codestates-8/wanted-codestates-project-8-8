@@ -8,7 +8,9 @@ export default function Button({
   width,
   height,
   onClick,
+  className,
 }) {
+  console.log(bgColor)
   return (
     <Btn
       onClick={onClick}
@@ -17,6 +19,7 @@ export default function Button({
       bgColor={bgColor}
       width={width}
       height={height}
+      className={className}
     >
       {children}
     </Btn>
@@ -29,9 +32,15 @@ const Btn = styled.button`
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  ${({ width }) => `width: ${width}px;`}
-  ${({ height }) => `height: ${height}px;`}
+  ${({ width }) => `width: ${width}px;`};
+  ${({ height }) => `height: ${height}px;`};
   ${({ bgColor }) =>
-    bgColor ? `background-color: ${bgColor}` : `background-color: white`}
-  ${({ fullWidth }) => (fullWidth ? `width : 100%;` : ``)}
+    bgColor ? `background-color: ${bgColor}` : `background-color: "white"`};
+  ${({ fullWidth }) => (fullWidth ? `width : 100%;` : ``)};
+
+  &.disabled {
+    background-color: ${({ theme }) => theme.colors.gray};
+    color: lightgray;
+    border: 1px solid ${({ theme }) => theme.colors.black};
+  }
 `
