@@ -29,18 +29,16 @@ export default function ItemList({ itemList, onClick }) {
   return (
     <>
       <ItemWrapper>
-        {itemList && itemList.length > 0 ? (
-          loading ? (
-            <SpinnerWrapper>
-              <Spinner />
-            </SpinnerWrapper>
-          ) : (
-            itemList.map((data, index) => (
-              <ItemContainer key={index}>
-                <Item data={data} onClick={() => onClick(data)} />
-              </ItemContainer>
-            ))
-          )
+        {loading ? (
+          <SpinnerWrapper>
+            <Spinner />
+          </SpinnerWrapper>
+        ) : itemList && itemList.length > 0 ? (
+          itemList.map((data, index) => (
+            <ItemContainer key={index}>
+              <Item data={data} onClick={() => onClick(data)} />
+            </ItemContainer>
+          ))
         ) : (
           <span>저장된 목록이 없습니다.</span>
         )}
