@@ -49,6 +49,7 @@ export default function ItemList({ itemList }) {
             name={activedData.name}
             addr={activedData.addr}
             tel={activedData.tel}
+            memo={activedData.memo}
           />
         </Modal>
       )}

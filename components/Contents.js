@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Button from './button/Button'
-export default function Contents({ name, addr, tel, id }) {
+export default function Contents({ name, addr, tel, id, memo }) {
+  const [text, setText] = useState(memo)
+  const memoChange = (e) => {
+    setText(e.target.value)
+  }
   return (
     <Wrapper>
       <h1>{name}</h1>
@@ -9,7 +13,7 @@ export default function Contents({ name, addr, tel, id }) {
       <p>{tel}</p>
       <form>
         <span>메모</span>
-        <textarea />
+        <textarea value={text} onChange={memoChange} />
 
         <BtnWrap>
           <Button bgColor="#B85656" width="147" height="36">
