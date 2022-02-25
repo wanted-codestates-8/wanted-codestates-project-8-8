@@ -4,6 +4,7 @@ import Modal from '../modal/Modal'
 import styled from 'styled-components'
 import Item from './Item'
 import Link from 'next/link'
+import Contents from '../Contents'
 
 const ItemWrapper = styled.div`
   display: flex;
@@ -23,7 +24,11 @@ const ItemContainer = styled.section`
 
 export default function ItemList({ itemList }) {
   const [activedData, setActivedData] = useState(null)
+  const [close, setClose] = useState(true)
 
+  const closeModal = () => {
+    setActivedData(null)
+  }
   return (
     <>
       <ItemWrapper>
@@ -37,7 +42,16 @@ export default function ItemList({ itemList }) {
           <span>저장된 목록이 없습니다.</span>
         )}
       </ItemWrapper>
-      {activedData && <Modal>{activedData.name}</Modal>}
+      {close && activedData && (
+        <Modal onClose={closeModal}>
+          <Contents
+            id={activedData.id}
+            name={activedData.name}
+            addr={activedData.addr}
+            tel={activedData.tel}
+          />
+        </Modal>
+      )}
     </>
   )
 }

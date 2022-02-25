@@ -137,6 +137,11 @@ function Index() {
   const [memo, setMemo] = useState('')
   const [alarm, setAlarm] = useState(false)
   const [isLoading, setLoading] = useState(true)
+  const [close, setClose] = useState(true)
+
+  const closeModal = () => {
+    setModalIdx(null)
+  }
 
   // fetch data through proxy
   const getKey = (i, d) => (d && !d.length ? null : String(i + 1))
@@ -246,7 +251,7 @@ function Index() {
               ></Item>
 
               {modalIdx === pub.id && (
-                <Modal onClose={onHandleModalClose}>
+                <Modal onClose={closeModal}>
                   <PubModalContent>
                     <h2 className="pubname">{pub.name}</h2>
                     <div className="address">{pub.addr}</div>
