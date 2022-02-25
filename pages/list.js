@@ -138,7 +138,6 @@ function Index() {
   const [memo, setMemo] = useState('')
   const [alarm, setAlarm] = useState(false)
   const [isLoading, setLoading] = useState(true)
-  const [close, setClose] = useState(true)
 
   const closeModal = () => {
     setModalIdx(null)
@@ -204,6 +203,7 @@ function Index() {
 
   function onHandlePubSave(data) {
     if (!memo) {
+      setAlarm({ text: '메모를 입력해주세요', className: 'warning' })
       return
     }
 
@@ -213,11 +213,10 @@ function Index() {
     localStorage.setItem('dataList', JSON.stringify(pubSaveList))
     setMemo('')
     setModalIdx(null)
-    setAlarm(true)
-  }
-
-  function onHandleModalClose() {
-    setModalIdx(null)
+    setAlarm({
+      text: '저장이 완료되었습니다',
+      className: '',
+    })
   }
 
   return (
@@ -257,7 +256,7 @@ function Index() {
 
                     <button
                       className={`save-btn${!memo ? ' disabled' : ''}`}
-                      onClick={() =>
+                      onClick={() => {
                         onHandlePubSave({
                           id: pub.id,
                           name: pub.name,
@@ -265,7 +264,7 @@ function Index() {
                           tel: pub.tel,
                           memo,
                         })
-                      }
+                      }}
                     >
                       저장하기
                     </button>
@@ -286,8 +285,9 @@ function Index() {
         {/* alram */}
         {alarm && (
           <FeedbackModal
-            text={'저장이 완료되었습니다.'}
-            timeOutFunc={() => setAlarm(false)}
+            text={alarm.text}
+            className={alarm.className}
+            timeOutFunc={() => setAlarm(null)}
           />
         )}
       </Containter>
