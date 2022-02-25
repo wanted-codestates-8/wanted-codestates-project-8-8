@@ -20,7 +20,7 @@ const Main = styled.main`
 
 const Containter = styled.section`
   width: 360px;
-  height: 800px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -53,6 +53,7 @@ const PubMapList = styled.ul`
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  overflow-x: hidden;
   overflow-y: auto;
   width: 100%;
   height: 100%;
