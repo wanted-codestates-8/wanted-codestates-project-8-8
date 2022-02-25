@@ -8,6 +8,8 @@ export default function Contents({ data, onDataChange, onDataDelete }) {
     setText(e.target.value)
   }
 
+  console.log(text)
+
   return (
     <Wrapper>
       <h1>{data.name}</h1>
@@ -19,15 +21,18 @@ export default function Contents({ data, onDataChange, onDataDelete }) {
 
         <BtnWrap>
           <Button
-            bgColor="#B85656"
+            bgColor="#6B7B56"
             width="147"
             height="36"
-            onClick={() => onDataChange(data.id, text)}
+            onClick={() => {
+              onDataChange(data.id, text)
+            }}
+            className={text ? '' : 'disabled'}
           >
             수정
           </Button>
           <Button
-            bgColor="#6B7B56"
+            bgColor="#B85656"
             width="142"
             height="36"
             onClick={() => onDataDelete(data.id)}
