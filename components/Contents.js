@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import Button from './button/Button'
-export default function Contents() {
+export default function Contents({ name, addr, tel, id }) {
   return (
     <Wrapper>
-      <h1>속리산 숲 휴양마을</h1>
-      <p>충청북도 어디 어디</p>
-      <p>000-0000-0000</p>
+      <h1>{name}</h1>
+      <p>{addr}</p>
+      <p>{tel}</p>
       <form>
         <span>메모</span>
         <textarea />

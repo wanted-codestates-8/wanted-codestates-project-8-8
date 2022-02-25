@@ -24,6 +24,7 @@ export default function Button({
 }
 
 const Btn = styled.button`
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
