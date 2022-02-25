@@ -7,12 +7,14 @@ import Image from 'next/image'
 import PlusButton from '../components/PlusButton'
 import Modal from '../components/modal/Modal'
 import Contents from '../components/Contents'
+import FeedbackModal from '../components/modal/FeebackModal'
 
 const Wrapper = styled.div`
   margin: auto;
   width: 360px;
   height: 100vh;
   background-color: white;
+  position: relative;
 `
 const ImageWrapper = styled.div`
   margin-left: 20px;
@@ -26,12 +28,15 @@ export default function Home() {
   const [currentTag, setCurrentTag] = useState(0)
   const [activedData, setActivedData] = useState(null)
   const [close, setClose] = useState(true)
+  const [feedbackState, setFeedbackState] = useState(null)
+
+  console.log(feedbackState)
 
   const handleSearchResult = (e) => {
     const tagState = TAG_DATA[currentTag]
     const value = e.target.value
-    const lists = JSON.parse(localStorage.getItem('dataList')).filter((list) =>
-      list[tagState].includes(value)
+    const lists = (JSON.parse(localStorage.getItem('dataList')) || []).filter(
+      (list) => list[tagState].includes(value)
     )
 
     setSearchResult(value)
@@ -40,8 +45,8 @@ export default function Home() {
 
   const onTagChange = (idx) => {
     const tagState = TAG_DATA[idx]
-    const lists = JSON.parse(localStorage.getItem('dataList')).filter((list) =>
-      list[tagState].includes(searchResult)
+    const lists = (JSON.parse(localStorage.getItem('dataList')) || []).filter(
+      (list) => list[tagState].includes(searchResult)
     )
 
     setCurrentTag(idx)
@@ -53,11 +58,31 @@ export default function Home() {
   }
 
   const onDataChange = (id, text) => {
+    if (!text) {
+      setFeedbackState({
+        text: '메모를 입력해주세요',
+        className: 'warning',
+      })
+
+      setTimeout(() => {
+        setFeedbackState(null)
+      }, 2000)
+      return
+    }
+
     closeModal()
 
     const willUpdateData = data.find((item) => item.id === id)
     willUpdateData.memo = text
     localStorage.setItem('dataList', JSON.stringify(data))
+
+    setFeedbackState({
+      text: '수정이 완료되었습니다',
+      className: '',
+    })
+    setTimeout(() => {
+      setFeedbackState(null)
+    }, 2000)
   }
 
   const onDataDelete = (id) => {
@@ -66,6 +91,15 @@ export default function Home() {
     const leftData = data.filter((item) => item.id !== id)
     localStorage.setItem('dataList', JSON.stringify(leftData))
     setData(leftData)
+
+    setFeedbackState({
+      text: '삭제가 완료되었습니다',
+      className: '',
+    })
+
+    setTimeout(() => {
+      setFeedbackState(null)
+    }, 2000)
   }
 
   useEffect(() => {
@@ -95,6 +129,13 @@ export default function Home() {
         </Modal>
       )}
       <PlusButton href={'/list'} />
+
+      {feedbackState && (
+        <FeedbackModal
+          text={feedbackState.text}
+          className={feedbackState.className}
+        />
+      )}
     </Wrapper>
   )
 }

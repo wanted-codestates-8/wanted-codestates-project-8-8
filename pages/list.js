@@ -243,12 +243,8 @@ function Index() {
 
         <PubMapList id="pub-map-list">
           {pubMapList?.map((pub) => (
-            <>
-              <Item
-                key={pub.id}
-                data={pub}
-                onClick={() => onHandleModalOpen(pub.id)}
-              ></Item>
+            <React.Fragment key={pub.id}>
+              <Item data={pub} onClick={() => onHandleModalOpen(pub.id)}></Item>
 
               {modalIdx === pub.id && (
                 <Modal onClose={closeModal}>
@@ -280,7 +276,7 @@ function Index() {
                   </PubModalContent>
                 </Modal>
               )}
-            </>
+            </React.Fragment>
           ))}
           {isLoading && (
             <>
