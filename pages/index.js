@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   height: 100vh;
   background-color: white;
   position: relative;
+  overflow-x: hidden;
 `
 const ImageWrapper = styled.div`
   margin-left: 20px;

@@ -8,6 +8,7 @@ const Toast = styled.div`
   position: absolute;
   top: 70px;
   left: 180px;
+  z-index: 1;
   color: white;
   border-radius: 5px;
   text-align: left;
