@@ -4,7 +4,6 @@ import ItemGroup from '../components/item/ItemGroup'
 import { useState, useEffect } from 'react'
 
 import Image from 'next/image'
-
 import PlusButton from '../components/PlusButton'
 import Modal from '../components/modal/Modal'
 import Contents from '../components/Contents'
@@ -61,6 +60,14 @@ export default function Home() {
     localStorage.setItem('dataList', JSON.stringify(data))
   }
 
+  const onDataDelete = (id) => {
+    closeModal()
+
+    const leftData = data.filter((item) => item.id !== id)
+    localStorage.setItem('dataList', JSON.stringify(leftData))
+    setData(leftData)
+  }
+
   useEffect(() => {
     setData(JSON.parse(localStorage.getItem('dataList')) || [])
   }, [])
@@ -80,7 +87,11 @@ export default function Home() {
       <ItemGroup itemList={data} onClick={setActivedData} />
       {close && activedData && (
         <Modal onClose={closeModal}>
-          <Contents data={activedData} onDataChange={onDataChange} />
+          <Contents
+            data={activedData}
+            onDataChange={onDataChange}
+            onDataDelete={onDataDelete}
+          />
         </Modal>
       )}
       <PlusButton href={'/list'} />

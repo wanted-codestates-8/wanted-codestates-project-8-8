@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import Button from './button/Button'
 
-export default function Contents({ data, onDataChange }) {
+export default function Contents({ data, onDataChange, onDataDelete }) {
   const [text, setText] = useState(data.memo)
   const memoChange = (e) => {
     setText(e.target.value)
@@ -26,7 +26,12 @@ export default function Contents({ data, onDataChange }) {
           >
             수정
           </Button>
-          <Button bgColor="#6B7B56" width="142" height="36">
+          <Button
+            bgColor="#6B7B56"
+            width="142"
+            height="36"
+            onClick={() => onDataDelete(data.id)}
+          >
             삭제
           </Button>
         </BtnWrap>
