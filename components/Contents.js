@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import Button from './button/Button'
+
 export default function Contents({ data, onDataChange }) {
   const [text, setText] = useState(data.memo)
   const memoChange = (e) => {
