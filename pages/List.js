@@ -112,6 +112,11 @@ function Index() {
   const [modalIdx, setModalIdx] = useState(null)
   const [memo, setMemo] = useState('')
   const [alarm, setAlarm] = useState(false)
+  const [close, setClose] = useState(true)
+
+  const closeModal = () => {
+    setModalIdx(null)
+  }
 
   const { data, error } = useSWR(
     '/api/pubMapForest',
@@ -188,7 +193,7 @@ function Index() {
               ></Item>
 
               {modalIdx === pub.id && (
-                <Modal onClose={onHandleModalClose}>
+                <Modal onClose={closeModal}>
                   <PubModalContent>
                     <h2 className="pubname">{pub.name}</h2>
                     <div className="address">{pub.addr}</div>
