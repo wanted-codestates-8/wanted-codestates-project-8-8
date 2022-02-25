@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useState } from 'react/cjs/react.development'
+import { useState } from 'react'
 import styled from 'styled-components'
 import Item from './Item'
 import { SpinnerWrapper, Snipper } from '../../pages/list'
