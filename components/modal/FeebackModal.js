@@ -38,7 +38,9 @@ const Toast = styled.div`
   }
 `
 
-const FeedbackModal = ({ text, className }) => {
+const FeedbackModal = ({ text, className, timeOutFunc }) => {
+  setTimeout(timeOutFunc, 2000)
+
   return (
     <>
       <Toast className={className}>{text}</Toast>
