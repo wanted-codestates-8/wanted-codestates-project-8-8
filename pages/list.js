@@ -214,10 +214,6 @@ function Index() {
     setMemo('')
     setModalIdx(null)
     setAlarm(true)
-
-    setTimeout(() => {
-      setAlarm(false)
-    }, 2000)
   }
 
   function onHandleModalClose() {
@@ -288,7 +284,12 @@ function Index() {
         </PubMapList>
 
         {/* alram */}
-        {alarm && <FeedbackModal text={'저장이 완료되었습니다.'} />}
+        {alarm && (
+          <FeedbackModal
+            text={'저장이 완료되었습니다.'}
+            timeOutFunc={() => setAlarm(false)}
+          />
+        )}
       </Containter>
     </Main>
   )

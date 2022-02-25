@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 
 const Toast = styled.div`
@@ -40,7 +40,11 @@ const Toast = styled.div`
 `
 
 const FeedbackModal = ({ text, className, timeOutFunc }) => {
-  setTimeout(timeOutFunc, 2000)
+  // clear timeout when dismounted
+  const timerID = useRef(null)
+  useEffect(() => () => clearTimeout(timerID.current), [])
+
+  timerID.current = setTimeout(timeOutFunc, 2000)
 
   return (
     <>
