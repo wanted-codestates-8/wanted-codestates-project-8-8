@@ -9,9 +9,9 @@ import FeedbackModal from '../components/modal/FeebackModal'
 import Item from '../components/item/Item'
 
 const Main = styled.main`
-  width: 100%;
+  margin: auto;
+  width: 360px;
   height: 100vh;
-  /* min-height: 100vh; */
   display: flex;
   align-items: center;
   justify-content: center;
