@@ -7,7 +7,6 @@ const ItemWrapper = styled.div`
   align-items: center;
   padding: 20px 0;
   height: calc(100vh - 200px);
-  // max-height: 740px;
   overflow: auto;
 `
 
@@ -31,17 +30,6 @@ export default function ItemList({ itemList, onClick }) {
           <span>저장된 목록이 없습니다.</span>
         )}
       </ItemWrapper>
-      {close && activedData && (
-        <Modal onClose={closeModal}>
-          <Contents
-            id={activedData.id}
-            name={activedData.name}
-            addr={activedData.addr}
-            tel={activedData.tel}
-            memo={activedData.memo}
-          />
-        </Modal>
-      )}
     </>
   )
 }
