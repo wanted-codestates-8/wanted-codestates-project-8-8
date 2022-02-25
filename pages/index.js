@@ -30,8 +30,6 @@ export default function Home() {
   const [close, setClose] = useState(true)
   const [feedbackState, setFeedbackState] = useState(null)
 
-  console.log(feedbackState)
-
   const handleSearchResult = (e) => {
     const tagState = TAG_DATA[currentTag]
     const value = e.target.value
@@ -60,7 +58,7 @@ export default function Home() {
   const onDataChange = (id, text) => {
     if (!text) {
       setFeedbackState({
-        text: '메모를 입력해주세요',
+        text: '메모를 입력해주세요.',
         className: 'warning',
       })
 
@@ -77,7 +75,7 @@ export default function Home() {
     localStorage.setItem('dataList', JSON.stringify(data))
 
     setFeedbackState({
-      text: '수정이 완료되었습니다',
+      text: '수정이 완료되었습니다.',
       className: '',
     })
     setTimeout(() => {
