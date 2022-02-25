@@ -68,6 +68,14 @@ const theme = {
   colors: {
     primary: '#6d7b58',
     secondary: '#b35256',
+    background: '#E5E5E5',
+
+    white: '#fff',
+    gray: '#F5F5F5',
+    gray2: '#e6e8e3',
+    darkgray: '#e0e0e0',
+    black: '#3b3a30',
+    warning: '#dc2f2f',
   },
 }
 
@@ -76,12 +84,6 @@ export default function App({ Component, pageProps }) {
     <>
       <Head>
         <title>더블엔씨 8조 기업과제</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
-          rel="stylesheet"
-        />
       </Head>
       <GlobalStyle />
       <ThemeProvider theme={theme}>

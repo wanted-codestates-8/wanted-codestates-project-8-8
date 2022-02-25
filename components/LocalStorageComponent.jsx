@@ -12,7 +12,7 @@ const LocalStorageComponent = () => {
         setListItems(items)
     }, [])
 
-    const obj = { id: 3, name: `아무산`, addr: `충북`, memo: memo }
+    const obj = { id: 3, name: `아무산`, addr: `충북`, tel:"000-000", memo: memo }
 
     const saveData = () => {
         const container = JSON.parse(localStorage.getItem("dataList")) || [];

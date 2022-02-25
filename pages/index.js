@@ -1,80 +1,60 @@
 import styled from 'styled-components'
 import SearchBar from '../components/SearchBar'
-import Item from '../components/Item'
+import ItemGroup from '../components/item/ItemGroup'
+import { useState } from 'react/cjs/react.development'
+
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect } from 'react'
+import PlusButton from '../components/PlusButton'
 import LocalStorageComponent from '../components/LocalStorageComponent'
 
 const Wrapper = styled.div`
   margin: auto;
   width: 360px;
-  height: 900px;
-
+  height: 100vh;
   background-color: white;
 `
-
-const ItemWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px 0;
-`
-
 const ImageWrapper = styled.div`
-  margin: 20px auto;
-  width: fit-content;
-
-  &:hover {
-    cursor: pointer;
-  }
+  margin-left: 20px;
 `
 
-const tempList = [
-  {
-    name: '계명산자연휴양림',
-    addr: '충청북도 충주시 충주호수로 1170 (종민동)',
-    tel: '043-840-7930',
-  },
-  {
-    name: '계명산자연휴양림',
-    addr: '충청북도 충주시 충주호수로 1170 (종민동)',
-    tel: '043-840-7930',
-  },
-  {
-    name: '계명산자연휴양림',
-    addr: '충청북도 충주시 충주호수로 1170 (종민동)',
-    tel: '043-840-7930',
-    memo: '역시 계명산!',
-  },
-  {
-    name: '계명산자연휴양림',
-    addr: '충청북도 충주시 충주호수로 1170 (종민동)',
-    tel: '043-840-7930',
-  },
-]
+const TAG_DATA = ['name', 'addr', 'memo']
 
 export default function Home() {
-  const [modal, setModal] = useState(false)
+  const [data, setData] = useState([])
+  const [searchResult, setSearchResult] = useState('')
+  const [currentTag, setCurrentTag] = useState(0)
 
-  const onClick = () => {
-    console.log('modal open!')
-    setModal(true)
+  const handleSearchResult = (e) => {
+    const tagState = TAG_DATA[currentTag]
+    const value = e.target.value
+    const lists = JSON.parse(localStorage.getItem('dataList')).filter((list) =>
+      list[tagState].includes(value)
+    )
+
+    setSearchResult(value)
+    setData(lists)
   }
 
+  useEffect(() => {
+    setData(JSON.parse(localStorage.getItem('dataList')) || [])
+  }, [])
+
   return (
-    <>
-      <Wrapper>
-        <SearchBar></SearchBar>
-        <ItemWrapper>
-          {tempList.map((data, index) => (
-            <Item key={index} data={data} onClick={onClick} />
-          ))}
-        </ItemWrapper>
-        <ImageWrapper>
-          <Image src="/add.png" width={'30'} height={'30'} />
-        </ImageWrapper>
-      </Wrapper>
+    <Wrapper>
+      <ImageWrapper>
+        <Image src="/title.png" width={100} height={40} />
+      </ImageWrapper>
+
+      <SearchBar
+        value={searchResult}
+        onChange={handleSearchResult}
+        tag={currentTag}
+        onTagChange={(idx) => setCurrentTag(idx)}
+      />
+      <ItemGroup itemList={data} />
+      <PlusButton href={'/list'} />
       <LocalStorageComponent />
-    </>
+    </Wrapper>
   )
 }
