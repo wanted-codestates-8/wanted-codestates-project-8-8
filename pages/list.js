@@ -163,7 +163,6 @@ function Index() {
   useEffect(() => {
     observer.current = new IntersectionObserver(update, {
       root: document.getElementById('list-wrapper'),
-      threshold: 1.0,
     })
   }, [])
 
