@@ -6,7 +6,6 @@ import { useState } from 'react/cjs/react.development'
 import Image from 'next/image'
 import { useEffect } from 'react'
 import PlusButton from '../components/PlusButton'
-import LocalStorageComponent from '../components/LocalStorageComponent'
 
 const Wrapper = styled.div`
   margin: auto;
@@ -54,7 +53,6 @@ export default function Home() {
       />
       <ItemGroup itemList={data} />
       <PlusButton href={'/list'} />
-      <LocalStorageComponent />
     </Wrapper>
   )
 }
