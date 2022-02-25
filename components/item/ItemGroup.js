@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useEffect, useState, Fragment } from 'react'
 import styled from 'styled-components'
 import Item from './Item'
 import { SpinnerWrapper, Spinner } from '../../pages/list'
@@ -35,11 +34,11 @@ export default function ItemList({ itemList, onClick }) {
           </SpinnerWrapper>
         ) : itemList && itemList.length > 0 ? (
           itemList.map((data, index) => (
-            <>
-              <ItemContainer key={index}>
+            <Fragment key={index}>
+              <ItemContainer>
                 <Item data={data} onClick={() => onClick(data)} />
               </ItemContainer>
-            </>
+            </Fragment>
           ))
         ) : (
           <span>저장된 목록이 없습니다.</span>
