@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import styled from 'styled-components'
 import Item from './Item'
-import { SpinnerWrapper, Snipper } from '../../pages/list'
+import { SpinnerWrapper, Spinner } from '../../pages/list'
 
 const ItemWrapper = styled.div`
   display: flex;
