@@ -79,8 +79,16 @@ export default function Home() {
   const onDataDelete = (id) => {
     closeModal()
 
-    const leftData = data.filter((item) => item.id !== id)
-    localStorage.setItem('dataList', JSON.stringify(leftData))
+    let leftData
+
+    if (data.length === 1) {
+      localStorage.removeItem('dataList')
+      leftData = []
+    } else {
+      leftData = data.filter((item) => item.id !== id)
+      localStorage.setItem('dataList', JSON.stringify(leftData))
+    }
+
     setData(leftData)
 
     setFeedbackState({
