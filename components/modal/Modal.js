@@ -1,25 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
-import BackDrop from './BackDrop'
 
-export default function Modal({ children }) {
+const Backdrop = (props) => {
+  return <ModalBackDrop onClick={props.onClose} />
+}
+
+function Modal(props) {
   return (
     <>
       {typeof window !== 'undefined' &&
         ReactDOM.createPortal(
-          <BackDrop />,
+          <Backdrop onClose={props.onClose} />,
           document.getElementById('back-drop')
         )}
       {typeof window !== 'undefined' &&
         ReactDOM.createPortal(
-          <Content>{children}</Content>,
+          <Content>{props.children}</Content>,
           document.getElementById('modal')
         )}
     </>
   )
 }
-
+export default Modal
 const Content = styled.div`
   background: #f5f5f5;
   display: flex;
@@ -34,4 +37,13 @@ const Content = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+`
+
+const ModalBackDrop = styled.div`
+  background: rgba(0, 0, 0, 0.29);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
 `
