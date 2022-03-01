@@ -28,6 +28,7 @@ PROJECT PERIOD: 2022.02.24 ~ 2022.02.25
 
 ### 🧔 메인 
 
+![무제](https://user-images.githubusercontent.com/85816029/156166483-589773df-ba6c-4a77-8a05-9025847632df.png)
 
 
 <br>
